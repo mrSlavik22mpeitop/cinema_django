@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+    <title>Товар</title>
+     <link rel="stylesheet" href="{% static "css/customer.css" %}" />
+     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<body id="bg" style="background-image: url('{%static "css/cd_project_red.png"%}');">
+
+
+{% block content %}
+<h1 class="mt-2" align="center">Информация о фильме</h1>
+
+<div class="d-flex justify-content-center">
+<a href= "{% url 'upload_movie' %}">
+ <button class="btn btn-primary btn-lg">Добавить новый фильм</button>
+ </a>
+ </div>
+
+<div class="d-flex justify-content-center mt-2">
+ <table class="table table-striped w-75 mt-4">
+    <thead>
+      <tr>
+       <th scope="col">Номер</th>
+       <th scope="col">Название</th>
+       <th scope="col">Автор</th>
+       <th scope="col">Жанр</th>
+       <th scope="col">Бюджет</th>
+       <th scope="col">Обновить фильм</th>
+       <th scope="col">Удалить фильм</th>
+    </tr>
+    </thead>
+     {% for movie in movies %}
+      <tr>
+      <td>{{movie.id}}</td>
+      <td>{{movie.title}}</td>
+      <td>{{movie.author}}</td>
+      <td>{{movie.genre}}</td>
+      <td>{{movie.price}}</td>
+      <td><a href="update/{{movie.id}}" class="btn btn-success mt-2 w-100" id = '{{movie.id}}'>Обновление</a></td>
+      <td><a href="delete/{{movie.id}}" class="btn btn-danger mt-2 w-100" id = '{{movie.id}}'>Удаление</a></td>
+      {% endfor %}
+      </tr>
+ </table>
+</div>
+
+{% endblock %}
+</body>
+</html>
