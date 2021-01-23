@@ -1,6 +1,7 @@
 from django import forms
 from .models import Movie
 from django.forms import ModelForm, TextInput, NumberInput
+
 class MovieCreate(forms.ModelForm):
     class Meta:
         model = Movie

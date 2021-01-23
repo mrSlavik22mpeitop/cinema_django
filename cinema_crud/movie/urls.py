@@ -1,9 +1,10 @@
 from django.urls import path
-from .views import index_movie, upload_movie, update_movie, delete_movie
+from .import views
+
 
 urlpatterns = [
-    path('', index_movie, name='index_movie'),
-    path('new', upload_movie, name='upload_movie'),
-    path('update/<int:id>/', update_movie, name='update_movie'),
-    path('delete/<int:id>/', delete_movie, name='delete_movie')
+    path('', views.index_movie, name='index_movie'),
+    path('upload/', views.upload_movie, name='upload_movie'),
+    path('update/<int:movie_id>/', views.update_movie),
+    path('delete/<int:movie_id>/', views.delete_movie)
 ]
