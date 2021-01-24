@@ -2,11 +2,24 @@
 {% load static %}
 <html>
 <head>
-    <title>Товар</title>
+    <title>Фильм</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
      <link rel="stylesheet" href="{% static "css/customer.css" %}" />
-     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-<body id="bg" style="background-image: url('{%static "css/cd_project_red.png"%}');">
-
+<body>
+<header>
+    <nav class="default-nav">
+      <ul>
+          <li> <a href="/witcher" style="color:yellow">Ведьмак</a> </li>
+          <li><a href= "{% url 'index_movie' %}">Фильмы</a></li>
+        <li><a href="/branchs"> Кинозал</a></li>
+        <li><a href="/screenings"> Сеанс</a></li>
+        <li><a href="/seats"> Места</a></li>
+        <li><a href="/users">Покупатель</a></li>
+        <li><a href="reservations">Резервирование</a></li>
+        <li> <a href="seat_reserveds">Закрепление места</a></li>
+      </ul>
+    </nav>
+  </header>
 
 {% block content %}
 <h1 class="mt-2" align="center">Информация о фильме</h1>

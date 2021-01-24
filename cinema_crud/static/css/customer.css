@@ -1,5 +1,4 @@
 .default-nav {
-
   display: block;
   background-color: #004990;
   overflow: hidden;
@@ -24,3 +23,18 @@ default-nav figure {
     font-size: 25px;
 }
 
+a
+{
+    color:white;
+    text-decoration: none;
+}
+.brd {
+    border: 4px double black; /* Параметры границы *//* Цвет фона */
+    padding: 50px; /* Поля вокруг текста */
+   }
+body
+{
+    background-image: url(cd_project_red.png);
+    margin: 0;
+    padding: 0;
+}

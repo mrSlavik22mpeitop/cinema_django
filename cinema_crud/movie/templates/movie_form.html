@@ -1,18 +1,18 @@
 {% extends 'movie.html' %}
+{% load crispy_forms_tags %}
 {% block content %}
     <center>
     <h1 class="mt-2" align="center">{{title}}</h1>
+    <div class="d-flex justify-content-center mt-2">
+    <form class="w-25 brd" action="#" method="post">
+    <div class="form-group">
     <form method = 'POST' enctype="multipart/form-data">
         {% csrf_token %}
-        <table class = 'w-50 table table-light' style="border-radius:10px;background-color:gray;">
-            {% for field in movie_form %}
-            <tr>
-                <th>{{field.label}}</th>
-                <td>{{ field }}</td>
-            </tr>
-            {% endfor %}
-        </table>
-        <button type="submit" class="btn btn-primary btn-lg w-25">Добавить</button>
+        {{ form|crispy }}
+     <button type="submit" class="btn btn-primary btn-lg w-100">Добавить</button>
     </form>
+    </div>
+    </form>
+    </div>
 </center>
 {% endblock %}

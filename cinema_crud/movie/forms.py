@@ -10,12 +10,12 @@ class MovieCreate(forms.ModelForm):
             'title': ('Название фильма'),
             'author': ('Автор фильма'),
             'genre': ('Жанр'),
-            'price': ('Бюджет')
+            'price': ('Бюджет($)')
         }
 
         widgets = {
-            'title': TextInput(attrs={'maxlength': 70}),
-            'author': TextInput(attrs={'maxlength': 70}),
-            'genre': TextInput(attrs={'maxlength': 40}),
-            'price': NumberInput(attrs={'maxlength': 40})
+            'title': TextInput(attrs={'maxlength': 70, 'placeholder': 'Аватар'}),
+            'author': TextInput(attrs={'maxlength': 70, 'placeholder': 'Джеймс Кэмерон'}),
+            'genre': TextInput(attrs={'maxlength': 40, 'placeholder': 'Фэнтези'}),
+            'price': NumberInput(attrs={'maxlength': 40, 'placeholder': '237'})
         }
