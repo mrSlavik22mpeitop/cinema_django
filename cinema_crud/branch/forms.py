@@ -8,7 +8,7 @@ class BranchCreate(forms.ModelForm):
         fields = ('name', 'seats')
         labels = {
             'name': ('Имя кинозала'),
-            'seats': ('количество мест')
+            'seats': ('Количество мест')
         }
 
         widgets = {

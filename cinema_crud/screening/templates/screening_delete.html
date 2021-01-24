@@ -10,7 +10,7 @@
 <body>
 <form method="post">
     {% csrf_token %}
-    <h1>Удалить кинозал: {{branch.name}} ?</h1>
+    <h1>Удалить сеанс под номером: {{screening.id}} ?</h1>
     <button type="submit" class="btn btn-success mt-2 w-25">Выполнить</button>
     <a class="btn btn-danger mt-2 w-25" href= "{% url 'index_movie' %}">Отменить</a>
 </form>

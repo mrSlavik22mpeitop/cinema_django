@@ -22,10 +22,10 @@
   </header>
 
 {% block content %}
-<h1 class="mt-2" align="center">Информация о фильме</h1>
+<h1 class="mt-2" align="center">Информация о сеансе</h1>
 <div class="d-flex justify-content-center">
 <a href= "{% url 'upload_movie' %}">
- <button class="btn btn-primary btn-lg">Добавить новый фильм</button>
+ <button class="btn btn-primary btn-lg">Добавить новый сеанс</button>
 </a>
 </div>
 
@@ -35,21 +35,23 @@
     <thead>
       <tr>
        <th scope="col">Номер</th>
-       <th scope="col">Название</th>
-       <th scope="col">Автор</th>
-       <th scope="col">Жанр</th>
-       <th scope="col">Бюджет</th>
+       <th scope="col">Название фильма</th>
+       <th scope="col">Имя кинозала</th>
+       <th scope="col">Длительность сеанса(минут)</th>
+       <th scope="col">Дата сеанса</th>
+       <th scope="col">Стоимость</th>
        <th scope="col">Обновить фильм</th>
        <th scope="col">Удалить фильм</th>
     </tr>
     </thead>
-     {% for movie in movies %}
+     {% for screening in screenings %}
       <tr>
-      <td>{{movie.id}}</td>
-      <td>{{movie.title}}</td>
-      <td>{{movie.author}}</td>
-      <td>{{movie.genre}}</td>
-      <td>{{movie.price}}</td>
+      <td>{{screening.id}}</td>
+      <td>{{screening.movie_id}}</td>
+      <td>{{screening.branch_id}}</td>
+      <td>{{screening.screening_time}}</td>
+      <td>{{screening.date_film}}</td>
+      <td>{{screening.price}}</td>
       <td><a href="update/{{movie.id}}" class="btn btn-success mt-2 w-100" id = '{{movie.id}}'>Обновление</a></td>
       <td><a href="delete/{{movie.id}}" class="btn btn-danger mt-2 w-100" id = '{{movie.id}}'>Удаление</a></td>
       {% endfor %}

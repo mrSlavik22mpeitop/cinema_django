@@ -1,10 +1,57 @@
 <!DOCTYPE html>
-<html lang="en">
+{% load static %}
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
+    <title>Фильм</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+     <link rel="stylesheet" href="{% static "css/customer.css" %}" />
 <body>
+<header>
+    <nav class="default-nav">
+      <ul>
+          <li> <a href="/witcher" style="color:yellow">Ведьмак</a> </li>
+          <li><a href= "{% url 'index_movie' %}">Фильмы</a></li>
+        <li><a href="{% url 'index_branch' %}"> Кинозал</a></li>
+        <li><a href="{% url 'index_screening' %}"> Сеанс</a></li>
+        <li><a href="/seats"> Места</a></li>
+        <li><a href="/users">Покупатель</a></li>
+        <li><a href="reservations">Резервирование</a></li>
+        <li> <a href="seat_reserveds">Закрепление места</a></li>
+      </ul>
+    </nav>
+  </header>
 
+{% block content %}
+<h1 class="mt-2" align="center">Информация о кинозале</h1>
+<div class="d-flex justify-content-center">
+<a href= "{% url 'upload_branch' %}">
+ <button class="btn btn-primary btn-lg">Добавить новый кинозал</button>
+</a>
+</div>
+
+
+<div class="d-flex justify-content-center mt-2">
+ <table class="table table-striped w-75 mt-4">
+    <thead>
+      <tr>
+       <th scope="col">Номер</th>
+       <th scope="col">Имя кинозала</th>
+       <th scope="col">Количество мест</th>
+       <th scope="col">Обновить фильм</th>
+       <th scope="col">Удалить фильм</th>
+    </tr>
+    </thead>
+     {% for branch in branchs %}
+      <tr>
+      <td>{{branch.id}}</td>
+      <td>{{branch.name}}</td>
+      <td>{{branch.seats}}</td>
+      <td><a href="update/{{branch.id}}" class="btn btn-success mt-2 w-100" id = '{{branch.id}}'>Обновление</a></td>
+      <td><a href="delete/{{branch.id}}" class="btn btn-danger mt-2 w-100" id = '{{branch.id}}'>Удаление</a></td>
+      {% endfor %}
+      </tr>
+ </table>
+</div>
+{% endblock %}
 </body>
 </html>
