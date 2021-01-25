@@ -2,6 +2,7 @@ from django import forms
 from .models import Screening
 from django.forms import ModelForm, NumberInput, DateInput
 
+
 class ScreeningCreate(forms.ScreeningForm):
     class Meta:
         model = Screening
