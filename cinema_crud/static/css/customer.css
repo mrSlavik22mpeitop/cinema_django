@@ -1,0 +1,43 @@
+.default-nav {
+  display: block;
+  background-color: #004990;
+  overflow: hidden;
+
+}
+default-nav figure {
+    float: right;
+    display: block;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 25px;
+}
+
+.default-nav ul li {
+    list-style-type: none;
+    float: left;
+    display: block;
+    text-align: center;
+    padding: 25px;
+    text-decoration: none;
+    font-size: 25px;
+}
+
+a
+{
+    color:white;
+    text-decoration: none;
+}
+.brd {
+    border: 4px double black; /* Параметры границы *//* Цвет фона */
+    padding: 50px; /* Поля вокруг текста */
+   }
+body
+{
+    background-image: url(cd_project_red.png);
+    margin: 0;
+    padding: 0;
+}
+table {
+    width: 100%; /* Ширина таблицы в процентах */
+   }

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="{% static "css/base.css" %}" rel="stylesheet">
+    <link rel="stylesheet" href="{% static "css/login.css" %}" />
+    <link rel="stylesheet" href="{% static "css/user_information.css" %}" />
+    <link rel="stylesheet" href="{% static "css/footer.css" %}"/>
+</head>
+<body>
+<div id="header">
+     <a class="nav__link" href="/user_information"><span class="logo">Октябрь</span></a>
+</div>
+<div id="content">
+    {% block content %}
+    {% endblock %}
+</div>
+<br>
+        <footer class="footer">
+            <div class="l-footer">
+                <h2>MrSlavik22</h2>
+                      <div class="footer__text">Дипломный проект студента НИУ МЭИ Волгина Вячеслава по разработке веб-приложения кинотеатра с разделением на административную и пользовательскую часть</div>
+
+            </div>
+                <ul class="r-footer">
+                    <li>
+                        <h2>Социальные сети</h2>
+                <ul class="box">
+                    <li><a href="https://vk.com/mrslavik22" target="_blank" style="color: white">Vkontakte</a></li>
+                    <li><a href="https://twitter.com/VolginSlavka" target="_blank" style="color: white">Twitter</a></li>
+                </ul>
+                    </li>
+                    <li class="features">
+                        <h2>Разделы</h2>
+                <ul class="box h-box">
+                    <li><a href="/user_information" style="color: white">Главная</a></li>
+                    <li><a href="/user_information/upload_mpei" style="color: white">Афиша</a></li>
+                    <li><a href="/user_information/upload_screening" style="color: white">Сеансы</a></li>
+                    <li><a href="/user_information/upload_news" style="color: white">Новости</a></li>
+                    <li><a href="/account/login" style="color: white">Вход</a></li>
+                </ul>
+                    </li>
+                </ul>
+                    <div class="b-footer">
+                <p style="color: white"> Все права защищены ©MrSlavik22 2021 </p>
+                    </div>
+            </footer>
+</body>
+</html>

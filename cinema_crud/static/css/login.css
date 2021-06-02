@@ -1,0 +1,31 @@
+input[type=text]{
+   width:424px;
+}
+input[type=password]{
+   width:424px;
+}
+input[type=email]{
+   width:424px;
+}
+input[type=submit]{
+   width:424px;
+}
+
+body
+{
+    background-image: url(cd_project_red.png);
+    margin: 0;
+    padding: 0;
+}
+.brd {
+    border: 4px double black; /* Параметры границы *//* Цвет фона */
+    padding: 50px; /* Поля вокруг текста */
+   }
+
+.password_done{
+    padding-top: 25px;
+    margin-left: 50px;
+}
+.a_password{
+    font-size: 20px;
+}

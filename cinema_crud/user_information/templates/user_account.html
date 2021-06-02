@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="{% static "css/base.css" %}" rel="stylesheet">
+    <link rel="stylesheet" href="{% static "css/login.css" %}" />
+    <link rel="stylesheet" href="{% static "css/user_information.css" %}" />
+    <link rel="stylesheet" href="{% static "css/footer.css" %}"/>
+</head>
+<body>
+<div id="header">
+     <a class="nav__link" href="/user_information"><span class="logo">Октябрь</span></a>
+</div>
+<div id="content">
+    {% block content %}
+    {% endblock %}
+</div>
+<h1 align="center">Добро пожаловать. Информация о бронирование мест на сеансах.</h1>
+<hr width="70%" align="center">
+<div class="d-flex justify-content-center">
+    <div class="col-md-4">
+        <div class="card card-body">
+            <h1 align="center"> Пользователь: {{ request.user.username}}</h1>
+<table class="table table-striped">
+    <thead>
+      <tr>
+       <th scope="col">Номер</th>
+       <th scope="col">Номер сеанса</th>
+       <th scope="col">Номер места</th>
+    </tr>
+    </thead>
+     {% for user in anime %}
+      <tr>
+      <td>{{user.id}}</td>
+      <td>{{user.screening_id}}</td>
+      <td>{{user.seat_id}}</td>
+      {% endfor %}
+      </tr>
+ </table>
+</div>
+</div>
+</div>
+</body>
+</html>

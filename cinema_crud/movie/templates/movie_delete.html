@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="{% static "css/customer.css" %}" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<header>
+    <nav class="default-nav">
+      <ul>
+          <li><a href= "{% url 'jonepages' %}" style="color: yellow">Главная</a></li>
+          <li><a href= "{% url 'index_movie' %}" style="color: white">Фильмы</a></li>
+        <li><a href="{% url 'index_branch' %}" style="color: white" >Кинозал</a></li>
+        <li><a href="{% url 'index_screening' %}" style="color: white">Сеанс</a></li>
+        <li><a href="{% url 'index_seat' %}" style="color: white"> Места</a></li>
+        <li><a href="{% url 'index_person' %}" style="color: white">Покупатель</a></li>
+        <li><a href="{% url 'index_fixation' %}" style="color: white">Резервирование</a></li>
+        <li><a href="{% url 'index_movie_shots' %}" style="color: white">Кадры к фильмам</a></li>
+        <li><a href="{% url 'index_branch_shots' %}" style="color: white">Кадры кинозалов</a></li>
+        <li> <a href="{% url 'index_news' %}" style="color: white">Новости</a> </li>
+        <li> <a href="{% url 'admin:index' %}" style="color:yellow">Админ</a> </li>
+        <li> <a href="/accounts/logout/" style="color:yellow">Выход</a></li>
+      </ul>
+    </nav>
+  </header>
+</head>
+<body>
+<div class="d-flex justify-content-center mt-2">
+     <div class="col-md-auto">
+        <div class="card card-body">
+<form method="post">
+    {% csrf_token %}
+    <h1>Удалить фильм: {{movie.title}} ?</h1>
+    <button type="submit" class="btn btn-success mt-2 w-100">Выполнить</button>
+    <a class="btn btn-danger mt-2 w-100" href= "{% url 'index_movie' %}">Отменить</a>
+</form>
+</div>
+     </div>
+</div>
+</body>
+</html>

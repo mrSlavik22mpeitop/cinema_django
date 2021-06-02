@@ -1,0 +1,76 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Главная</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="{% static '/css/customer.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static '/css/vice.css' %}">
+</head>
+<body>
+<header>
+    <nav class="default-nav">
+      <ul>
+          <li><a href= "{% url 'jonepages' %}" style="color: yellow">Главная</a></li>
+          <li><a href= "{% url 'index_movie' %}">Фильмы</a></li>
+        <li><a href="{% url 'index_branch' %}" id="branch">Кинозал</a></li>
+        <li><a href="{% url 'index_screening' %}">Сеанс</a></li>
+        <li><a href="{% url 'index_seat' %}"> Места</a></li>
+        <li><a href="{% url 'index_person' %}" id="user">Покупатель</a></li>
+        <li><a href="{% url 'index_fixation' %}">Резервирование</a></li>
+        <li><a href="{% url 'index_movie_shots' %}">Кадры к фильмам</a></li>
+        <li><a href="{% url 'index_branch_shots' %}">Кадры кинозалов</a></li>
+        <li> <a href="{% url 'index_news' %}">Новости</a> </li>
+        <li> <a href="{% url 'admin:index' %}" style="color:yellow">Админ</a> </li>
+        <li> <a href="/accounts/logout/" style="color:yellow">Выход</a></li>
+      </ul>
+    </nav>
+  </header>
+<br>
+
+<div class="d-flex justify-content-center">
+    <div class="col-lg">
+        <div class="card card-body">
+               <h1 align="center">Статистика по элементам системы</h1>
+{%  include 'status.html' %}
+ </div>
+</div>
+</div>
+<br>
+<br>
+{% block content %}
+
+<div class="d-flex justify-content-center">
+    <div class="col-lg">
+        <div class="card card-body">
+<h1 align="center">Сеансы на сегодня</h1>
+<table class="table table-striped">
+    <thead>
+      <tr>
+       <th scope="col">Номер</th>
+       <th scope="col">Название фильма</th>
+       <th scope="col">Имя кинозала</th>
+       <th scope="col">Длительность сеанса(минут)</th>
+       <th scope="col">Дата сеанса</th>
+       <th scope="col">Стоимость(₽)</th>
+    </tr>
+    </thead>
+     {% for screening in now_screenings %}
+      <tr>
+      <td>{{screening.id}}</td>
+      <td>{{screening.movie_mpei}}</td>
+      <td>{{screening.branch_mpei}}</td>
+      <td>{{screening.screening_time}}</td>
+      <td>{{screening.date_film}}</td>
+      <td>{{screening.price}}</td>
+      {% endfor %}
+      </tr>
+ </table>
+</div>
+</div>
+</div>
+{% include "paginator.html" with page=posts %}
+{% endblock %}
+</body>
+
+</html>

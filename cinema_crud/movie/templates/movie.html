@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+{% load static %}
+{% load bootstrap %}
+{% load crispy_forms_tags %}
+<html>
+<head>
+    <title>Фильм</title>
+    <link rel="stylesheet" href="{% static "css/customer.css" %}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<body>
+<header>
+    <nav class="default-nav">
+      <ul>
+          <li><a href= "{% url 'jonepages' %}" style="color: yellow">Главная</a></li>
+          <li><a href= "{% url 'index_movie' %}" style="color: white">Фильмы</a></li>
+        <li><a href="{% url 'index_branch' %}" style="color: white" >Кинозал</a></li>
+        <li><a href="{% url 'index_screening' %}" style="color: white">Сеанс</a></li>
+        <li><a href="{% url 'index_seat' %}" style="color: white"> Места</a></li>
+        <li><a href="{% url 'index_person' %}" style="color: white">Покупатель</a></li>
+        <li><a href="{% url 'index_fixation' %}" style="color: white">Резервирование</a></li>
+        <li><a href="{% url 'index_movie_shots' %}" style="color: white">Кадры к фильмам</a></li>
+        <li><a href="{% url 'index_branch_shots' %}" style="color: white">Кадры кинозалов</a></li>
+        <li> <a href="{% url 'index_news' %}" style="color: white">Новости</a> </li>
+        <li> <a href="{% url 'admin:index' %}" style="color:yellow">Админ</a> </li>
+        <li> <a href="/accounts/logout/" style="color:yellow">Выход</a></li>
+      </ul>
+    </nav>
+  </header>
+{% block content %}
+<h1 class="mt-2" align="center">Информация о фильмах</h1>
+<div class="d-flex justify-content-center">
+    <div class="col-md-auto">
+        <div class="card card-body">
+
+         <div class="col-md-auto">
+            <div class="card card-body">
+                <form method="get">
+                    {{movies_filtered.form|crispy}}
+                <button class="btn btn-warning w-100" type="submit">Поиск</button>
+              </form>
+            </div>
+            </div>
+            <br>
+ <a href= "{% url 'upload_movie' %}"> <button class="btn btn-primary btn-lg w-100">Добавить новый фильм</button></a>
+            <br>
+ <table class="table table-striped">
+    <thead>
+      <tr>
+       <th scope="col">Номер</th>
+       <th scope="col">Название</th>
+       <th scope="col">Автор</th>
+       <th scope="col">Жанр</th>
+       <th scope="col">Бюджет($)</th>
+       <th scope="col">Страна</th>
+       <th scope="col">Слоган</th>
+       <th scope="col">Актеры</th>
+       <th scope="col">Рейтинг</th>
+       <th scope="col">Описание</th>
+       <th scope="col">Дата выхода</th>
+       <th scope="col">Обновить фильм</th>
+       <th scope="col">Удалить фильм</th>
+    </tr>
+    </thead>
+     {% for movie in movies_page_obj %}
+      <tr>
+      <td>{{movie.id}}</td>
+      <td>{{movie.title}}</td>
+      <td>{{movie.author}}</td>
+      <td>{{movie.genre}}</td>
+      <td>{{movie.price}}</td>
+      <td>{{movie.country}}</td>
+      <td>{{movie.tagline}}</td>
+      <td>{{movie.actor}}</td>
+      <td>{{movie.rating}}</td>
+      <td>{{movie.description}}</td>
+      <td>{{movie.date_premier}}</td>
+      <td><a href="update/{{movie.id}}" class="btn btn-success mt-2 w-100" id = '{{movie.id}}'>Обновление</a></td>
+      <td><a href="delete/{{movie.id}}" class="btn btn-danger mt-2 w-100" id = '{{movie.id}}'>Удаление</a></td>
+      {% endfor %}
+      </tr>
+ </table>
+</div>
+</div>
+</div>
+<br>
+<br>
+
+<div class="d-flex justify-content-center">
+<nav aria-label="...">
+  <ul class="pagination">
+
+      {% if movies_page_obj.has_previous %}
+      <a class="page-link" href="?page={{ movies_page_obj.previous_page_number }}" tabindex="-1">Назад</a>
+       {% endif %}
+
+      {% for n in movies_page_obj.paginator.page_range %}
+
+      {% if movies_page_obj.number == n %}
+     <li class="page-item active">
+      <a class="page-link" href="?page={{n}}">{{n}}<span class="sr-only">(current)</span></a>
+    </li>
+      {% else %}
+
+    <li class="page-item">
+        <a class="page-link" href="?page={{ n }}">{{n}}</a>
+    </li>
+      {% endif %}
+
+      {% endfor %}
+
+       {% if movies_page_obj.has_next %}
+      <a class="page-link" href="?page={{ movies_page_obj.next_page_number }}" tabindex="-1">Вперёд</a>
+       {% endif %}
+  </ul>
+</nav>
+</div>
+{% endblock %}
+</body>
+</html>

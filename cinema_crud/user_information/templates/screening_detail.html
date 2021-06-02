@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+    <title>Информация о сеансе</title>
+    <meta charset="utf-8">
+     <link rel="stylesheet" href="{% static "css/font-awesome.css" %}"/>
+     <link rel="stylesheet" href="{% static "css/bootstrap.css" %}"/>
+           <link rel="stylesheet" href="{% static "css/user_information.css" %}"/>
+    <link rel="stylesheet" href="{% static "css/style.css" %}"/>
+    <link rel="stylesheet" href="{% static "css/footer.css" %}"/>
+    <link href="https://fonts.googleapis.com/css?family=Kaushan+Script|Montserrat:400,700&amp;subset=cyrillic-ext" rel="stylesheet">
+
+    <!-- //Fonts -->
+</head>
+
+<body>
+
+<header class="header">
+    <div class="container">
+        <div class="header__inner">
+            <div class="header__logo">Добро пожаловать</div>
+
+            <nav class="nav">
+                <a class="nav__link" href="/user_information">Главная</a>
+                <a class="nav__link" href="/user_information/upload_mpei">Афиша</a>
+                <a class="nav__link" href="/user_information/upload_screening">Сеансы</a>
+                <a class="nav__link" href="/user_information/upload_news">Новости</a>
+                {% if request.user.is_authenticated %}
+                <a class="nav__link active" href="#">{{ request.user.username}}</a>
+                 <a class="nav__link" href="/accounts/logout">Выйти</a>
+                {% else %}
+                <a class="nav__link" href="/account/login">Вход</a>
+                {% endif %}
+                </a>
+            </nav>
+        </div>
+    </div>
+</header>
+
+<div class="intro">
+    <div class="container">
+        <div class="intro__inner">
+            <h2 class="intro__suptitle">Кинотеатр</h2>
+            <h1 class="intro__title">Октябрь</h1>
+            <a class="btn" href="http://127.0.0.1:8000/">Выбор режима</a>
+        </div>
+    </div>
+</div>
+
+<section class="section" id="about">
+<div class="container">
+<div class="section__header">
+    <h2 class="section__title">Описание сеанса</h2>
+</div>
+ </div>
+
+    <section class="ab-info-main  py-md-1 py-4 editContent"
+             style="outline: none; outline-offset: -2px; cursor: inherit; color: rgb(33, 37, 41); font-size: 16px; background-color: rgba(0, 0, 0, 0); font-family: Lato, sans-serif;">
+        <div class="container py-md-3">
+            <!-- top Products -->
+            <div class="row">
+                <!-- product left -->
+                <div class="side-bar col-lg-4">
+                </div>
+
+                <div class="left-ads-display col-lg-8">
+                    <div class="row">
+                        <div class="desc1-left col-md-6">
+
+                            <img src="{{screening.movie_mpei.picture.url}}" class="img-fluid" alt="">
+
+                        </div>
+
+                        <div class="desc1-right col-md-6 pl-lg-4">
+                            <h2 class="editContent" style="...">
+                                {{screening.movie_mpei}}</h2>
+                            <hr>
+                            <h5 class="editContent"></h5>
+                            <ul>
+                                <li style="list-style: none"><span><b>Номер сеанса: </b>{{screening.id}}</span></li>
+                                <hr>
+                                <li style="list-style: none"><span><b>Кинозал: </b>{{screening.branch_mpei}}</span></li>
+                                <hr>
+                                <li style="list-style: none"><span><b>Время сеанса: </b>{{screening.screening_time}}</span></li>
+                                <hr>
+                                <li style="list-style: none"><span><b>Дата сеанса:</b> {{screening.date_film}}</span></li>
+                                <hr>
+                                <li style="list-style: none"><span><b>Стоимость:</b> {{screening.price}} ₽</span></li>
+                                <hr>
+                            </ul>
+                        </div>
+
+                        <div class="screening_title_information">
+                        <h2>Описание кинозала {{screening.branch_mpei}}:</h2>
+                        <p>{{screening_description}}</p>
+                        {% for image in branch %}
+                            {{image.title}}
+                            <img src="{{ image.title }}" class="img-movie-shots" alt="{{image.description}}">
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+</section>
+
+<br>
+        <footer class="footer">
+            <div class="l-footer">
+                <h2>MrSlavik22</h2>
+                      <div class="footer__text">Дипломный проект студента НИУ МЭИ Волгина Вячеслава по разработке веб-приложения кинотеатра с разделением на административную и пользовательскую часть</div>
+
+            </div>
+                <ul class="r-footer">
+                    <li>
+                        <h2>Социальные сети</h2>
+                <ul class="box">
+                    <li><a href="https://vk.com/mrslavik22" target="_blank" style="color: white">Vkontakte</a></li>
+                    <li><a href="https://twitter.com/VolginSlavka" target="_blank" style="color: white">Twitter</a></li>
+                </ul>
+                    </li>
+                    <li class="features">
+                        <h2>Разделы</h2>
+                <ul class="box h-box">
+                    <li><a href="/user_information" style="color: white">Главная</a></li>
+                    <li><a href="/user_information/upload_mpei" style="color: white">Афиша</a></li>
+                    <li><a href="/user_information/upload_screening" style="color: white">Сеансы</a></li>
+                    <li><a href="/user_information/upload_news" style="color: white">Новости</a></li>
+                    <li><a href="/account/login" style="color: white">Вход</a></li>
+                </ul>
+                    </li>
+                </ul>
+                    <div class="b-footer">
+                <p style="color: white"> Все права защищены ©MrSlavik22 2021 </p>
+                    </div>
+            </footer>
+</body>
+</html>

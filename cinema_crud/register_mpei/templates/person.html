@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+{% load static %}
+{% load crispy_forms_tags %}
+<html>
+<head>
+    <title>Покупатель</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+     <link rel="stylesheet" href="{% static "css/customer.css" %}" />
+<body>
+<header>
+    <nav class="default-nav">
+      <ul>
+          <li><a href= "{% url 'jonepages' %}" style="color: yellow">Главная</a></li>
+          <li><a href= "{% url 'index_movie' %}">Фильмы</a></li>
+        <li><a href="{% url 'index_branch' %}">Кинозал</a></li>
+        <li><a href="{% url 'index_screening' %}">Сеанс</a></li>
+        <li><a href="{% url 'index_seat' %}"> Места</a></li>
+        <li><a href="{% url 'index_person' %}">Покупатель</a></li>
+        <li><a href="{% url 'index_fixation' %}">Резервирование</a></li>
+        <li><a href="{% url 'index_movie_shots' %}">Кадры к фильмам</a></li>
+        <li><a href="{% url 'index_branch_shots' %}">Кадры кинозалов</a></li>
+        <li> <a href="{% url 'index_news' %}">Новости</a> </li>
+        <li> <a href="{% url 'admin:index' %}" style="color:yellow">Админ</a> </li>
+        <li> <a href="/accounts/logout/" style="color:yellow">Выход</a></li>
+      </ul>
+    </nav>
+  </header>
+{% block content %}
+<h1 class="mt-2" align="center">Информация о пользователях</h1>
+<div class="d-flex justify-content-center mt-2">
+        <div class="col-md-auto">
+        <div class="card card-body">
+            <div class="col-md-auto">
+            <div class="card card-body">
+                <form method="get">
+                    {{users_filtered.form|crispy}}
+                <button class="btn btn-warning w-100" type="submit">Поиск</button>
+              </form>
+            </div>
+            </div>
+            <br>
+    <a href= "{% url 'upload_person' %}"><button class="btn btn-primary btn-lg w-100" id="upload_user">Добавить нового пользователя</button></a>
+    <br>
+ <table class="table table-striped">
+    <thead>
+      <tr>
+       <th scope="col">Номер</th>
+       <th scope="col">Логин</th>
+       <th scope="col">Имя</th>
+       <th scope="col">Фамилия</th>
+       <th scope="col">Почта</th>
+       <th scope="col">Обновить пользователя</th>
+       <th scope="col">Удалить пользователя</th>
+    </tr>
+    </thead>
+     {% for user in users_page_obj %}
+      <tr>
+      <td>{{user.id}}</td>
+      <td>{{user.username}}</td>
+      <td>{{user.first_name}}</td>
+      <td>{{user.last_name}}</td>
+      <td>{{user.email}}</td>
+      <td><a href="update/{{user.id}}" class="btn btn-success mt-2 w-100" id = '{{user.id}}'>Обновление</a></td>
+      <td><a href="delete/{{user.id}}" class="btn btn-danger mt-2 w-100" id = '{{user.id}}'>Удаление</a></td>
+      {% endfor %}
+      </tr>
+ </table>
+        </div>
+        </div>
+</div>
+<br>
+<div class="d-flex justify-content-center">
+<nav aria-label="...">
+  <ul class="pagination">
+    {% if users_page_obj.has_previous %}
+      <a class="page-link" href="?page={{ users_page_obj.has_previous }}" tabindex="-1">Назад</a>
+       {% endif %}
+
+      {% for n in users_page_obj.paginator.page_range %}
+
+      {% if users_page_obj.number == n %}
+     <li class="page-item active">
+      <a class="page-link" href="?page={{n}}">{{n}}<span class="sr-only">(current)</span></a>
+    </li>
+      {% else %}
+    <li class="page-item">
+        <a class="page-link" href="?page={{ n }}">{{n}}</a>
+    </li>
+      {% endif %}
+      {% endfor %}
+     {% if users_page_obj.has_next %}
+      <a class="page-link" href="?page={{ users_page_obj.next_page_number }}" tabindex="-1">Вперёд</a>
+       {% endif %}
+  </ul>
+</nav>
+</div>
+{% endblock %}
+</body>
+</html>

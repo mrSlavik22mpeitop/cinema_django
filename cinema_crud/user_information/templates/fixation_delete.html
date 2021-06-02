@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="{% static "css/customer.css" %}" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+<div class="d-flex justify-content-center mt-2">
+     <div class="col-md-auto">
+        <div class="card card-body">
+<form method="post">
+    {% csrf_token %}
+    <h1>Удалить покупку пользователя: {{fixation.user}} ?</h1>
+    <button type="submit" class="btn btn-success mt-2 w-100">Выполнить</button>
+    <a class="btn btn-danger mt-2 w-100" href= "{% url 'index_fixation' %}">Отменить</a>
+</form>
+</div>
+</div>
+</div>
+</body>
+</html>

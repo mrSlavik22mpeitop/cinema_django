@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="{% static "css/base.css" %}" rel="stylesheet">
+    <link rel="stylesheet" href="{% static "css/login.css" %}" />
+    <link rel="stylesheet" href="{% static "css/user_information.css" %}" />
+    <link rel="stylesheet" href="{% static "css/footer.css" %}"/>
+</head>
+<body>
+<div id="header">
+         <a class="nav__link" href="/user_information"><span class="logo">Октябрь</span></a>
+</div>
+<div id="content">
+{% block content %}
+    <h1>Добро пожаловать {{ new_user.first_name }}!</h1>
+    <p>Ваша учетная запись была успешна создана. Теперь вы можете войти: <a href="{% url "login" %}">log in</a>.</p>
+{% endblock %}
+</div>
+</body>
+</html>

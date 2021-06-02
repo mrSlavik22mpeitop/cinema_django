@@ -1,0 +1,48 @@
+.card-img {
+    object-fit: cover;
+}
+
+
+.registration-container{
+    position: relative;
+    width: 600px;
+    margin:0px auto;
+    background-color: #138496;
+}
+
+.Absolute-Center {
+    margin: auto;
+    position: relative;
+    width: 50%;
+    height: 30%;
+    min-width: 200px;
+    max-width: 400px;
+    padding-top: 4%;
+    padding-bottom: 0%;
+
+}
+
+#logo {
+    /*min-width: 100%;*/
+    width: 600px;
+    max-width: 100%;
+}
+
+
+
+body, html {
+  height: 100%;
+}
+
+.btn-select {
+    width: 75px;
+}
+
+h3 {
+    text-shadow: 0px 0px 3px white;
+}
+
+h6 {
+    text-shadow: 0px 0px 3px white;
+}
+
